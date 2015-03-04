@@ -16,4 +16,11 @@ class Pixi:
         self.punktliste = []
 
     def binary (self):
-        pass
+        # Bild muss eingelesen sein, dann wird Bild in Binary umgewandelt.
+        neueliste = self.punktliste.copy()
+        for reihe in range(len(self.punktliste)):
+            for px in range(len(self.punktliste[reihe])):
+                neueliste[reihe][px] = chr(punktliste[reihe][px])
+        self.punktliste = neueliste.copy()
+        c = str(int(self.kopf[0][1]) + 3)
+        self.kopf[0] = "P" + c + "\n"
