@@ -1,7 +1,7 @@
 # Funktionen
 # Pixi - Graphical Portable Pixelmap Editor
 # Created by Julius Bittner 04.03.2015
-# Last change 04.03.2015
+# Last change 10.03.2015
 
 class Pixi:
 
@@ -22,5 +22,6 @@ class Pixi:
             for px in range(len(self.punktliste[reihe])):
                 neueliste[reihe][px] = chr(punktliste[reihe][px])
         self.punktliste = neueliste.copy()
-        c = str(int(self.kopf[0][1]) + 3)
-        self.kopf[0] = "P" + c + "\n"
+		
+        kind = str(int(self.kopf[0][1]) + 3)
+        self.kopf[0] = "P" + kind + "\n"
