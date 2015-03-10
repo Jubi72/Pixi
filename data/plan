@@ -1,15 +1,15 @@
-Bilder importieren / einlesen - Lucas (import)
+Bilder importieren / einlesen  - Lucas (import)
 Bilder exportieren / schreiben - Lucas (export)
 
-Spiegeln - Lucas (mirror)
+Spiegeln    - Lucas (mirror)
 Invertieren - Lucas (invert)
-Drehen - Julius (turn)
+Drehen      - Julius (turn)
 
 Text für Laien exportieren bzw. im GUI anzeigen - Lucas (showtext)
-Binär/ASCII-Zeichen umwandeln - Julius (binary)
+Binär/ASCII-Zeichen umwandeln                   - Julius (binary)
 
 GUI - Julius
 
-evtl. Störungen entfernen - Julius (repair)
-evtl. Bild in GUI anzeigen- Julius (showpic)
-evtl. Steganografie       - Julius (code|decode)
+evtl. Störungen entfernen  - Julius (repair)
+evtl. Bild in GUI anzeigen - Julius (showpic)
+evtl. Steganografie        - Julius (code|decode)
