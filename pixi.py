@@ -1,7 +1,7 @@
 # Funktionen
 # Pixi - Graphical Portable Pixelmap Editor
 # Created by Julius Bittner 04.03.2015
-# Last change 10.03.2015
+# Last change 11.03.2015
 
 class Pixi:
 
