@@ -9,7 +9,7 @@ class Pixi:
         # initialisiert Editor
         self.einliste = []
         self.kopf = []
-        self.masse = 0
+        self.groesse = 0
         self.breite = 0
         self.hoehe = 0
         self.farbtiefe = 0
@@ -25,3 +25,64 @@ class Pixi:
 		
         kind = str(int(self.kopf[0][1]) + 3)
         self.kopf[0] = "P" + kind + "\n"
+
+    def einlesen (self,datei):
+        f = open(datei,"r")    
+        self.einliste = f.readlines() #die Rohdaten
+        f.close()
+        self.kopf        = self.einliste[0:4] 
+        self.groesse     = self.kopf[2].split()
+        self.breite      = int(self.groesse[0])
+        self.hoehe       = int (self.groesse[1])
+        self.farbtiefe   = int(self.einliste[3])
+        self.punktliste  = []
+        self.zeile       =[]
+        for i in self.einliste[4:]:
+            textzeile = i.strip()
+            textzeile = i.split()
+            for punkt in textzeile:
+                zeile.append(int(punkt))
+        for i in range(self.hoehe):
+                anf  = self.breite*i
+                ende = self.breite+anf
+                self.punktliste.append(zeile[anf:ende])
+
+    def spiegelx (self):
+        neue_punktliste = []
+        for i in self.punktliste:
+            neue_punktliste.insert(0,i)
+        self.punktliste = neue_punktliste
+            
+
+    def spiegely (self):
+        neue_punktliste = []
+        for i in range(self.hoehe):
+            zeile=[]
+            for j in range(self.breite,0,-1):
+                zeile.append(self.punktliste[i][j-1])
+            neue_punktliste.append(zeile)
+        self.punktliste = neue_punktliste
+
+    def invertieren (self):
+        neue_punktliste=[]
+        for zeile in self.punktliste:
+            listenzeile=[]
+            for wert in zeile:
+                neuer_wert=self.farbtiefe-wert
+                listenzeile.append(neuer_wert)
+            neue_punktliste.append(listenzeile)
+        self.punktliste=neue_punktliste
+        print(self.punktliste)
+
+    def schreiben(self,datei):
+        a=open(datei,"w")
+        s=''
+        kopf=''
+        for i in self.kopf:
+            kopf+=i
+        for i in range (self.hoehe):
+            for j in range (self.breite):
+                s+=str(self.punktliste[i][j])+" "
+            s+="\n"
+        a.write(kopf+s)
+        a.close()
