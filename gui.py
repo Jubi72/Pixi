@@ -1,10 +1,11 @@
 # Graphical User Interface
 # Pixi - Graphical Portable Pixelmap Editor
 # Created by Julius Bittner 04.03.2015
-# Last change 11.03.2015
+# Last change 13.03.2015
 
 import pixi
 import tkinter as tk
+import os
 from tkinter.filedialog import askopenfilename
 
 class Gui:
@@ -13,10 +14,11 @@ class Gui:
         # initialisiert Grafische Benutzeroberfläche
         self.root = tk.Tk()
         self.root.title("Pixi")
-        self.root.config(bg="yellow")
+        self.root.config(bg="red")
         self.root.geometry("300x100+100+100")
+        self.filename = "" # Dateiname für Bild
         
-        tk.Label(self.root, text="Pixi", fg="blue", bg="yellow", font="Georgia 48").pack()
+        tk.Label(self.root, text="Pixi", fg="white", bg="red", font="Georgia 48").pack()
         
         self.menu()
 
@@ -58,16 +60,18 @@ class Gui:
         
     def einlesen(self):
         # liest Bild ein
-        filename = askopenfilename()
-        pixi.einlesen(filename)
+        self.filename = askopenfilename()
+        bild = pixi.Pixi()
+        bild.einlesen(self.filename)
 
     def speichern(self):
         # Speichert Datei unter gleichem Namen
-        pass
+        bild.schreiben(self.filename)
 
     def speichern_unter(self):
-        # Speichert Datei unter anderem Namen
-        pass
+        # Speichert Datei unter (anderem) Namen
+        self.filename = askopenfilename()
+        bild.schreiben(self.filename)
 
     def plaintext(self):
         # zeigt Inhalt der Datei in Plaintext an
@@ -79,15 +83,15 @@ class Gui:
 
     def spiegeln_x(self):
         # Spiegelt Bild an x-Achse
-        pass
+        bild.spiegelx()
 
     def spiegeln_y(self):
         # Spiegelt Bild an y-Achse
-        pass
+        bild.spiegely()
     
     def invertieren(self):
         # invertiert Farben des Bilds
-        pass
+        bild.invertieren()
 
     def drehen_rechts(self):
         # Dreht Bild um 90 ° nach rechts
@@ -99,16 +103,39 @@ class Gui:
 
     def hilfe(self):
         # zeigt Hilfetext an
-        pass
+        hilfetext = "*Hilfetext*"
+        hilfef = tk.Tk()
+        hilfef.title("Pixi-Hilfe")
+        hilfef.config(bg="red")
+
+        tk.Label(hilfef, text=hilfetext, bg="red", font="Georgia 13", fg="white").pack()
+        tk.Button(hilfef, text="Schließen", command=hilfef.destroy).pack()
+
+        hilfef.mainloop()
 
     def about(self):
         # zeigt Informationen über das Programm an
-        abouttext = """Copyright Lucas Herrenkind\nund Julius Bittner 2015"""
+        abouttext = """Pixi
+
+Grafischer PPM-Editor
+
+Version 0.0.1
+
+Copyright Lucas Herrenkind
+und Julius Bittner 2015
+
+Kontakt:"""
+        email = "content.legoag@gmail.com"
         about = tk.Tk()
         about.title("Über Pixi")
-        about.geometry("300x300+500+100")
+        about.config(bg="red")
 
-        tk.Label(about, text=abouttext, bg="yellow", font="Georgia 13").pack()
+        tk.Label(about, text=abouttext, bg="red", font="Georgia 13", fg="white").pack()
+        kont = tk.Label(about, text=email, bg="red", font="Georgia 13", fg="yellow")
+        kont.bind("<Button>",
+           lambda event:os.execl("http://mailto:content.legoag@gmail.com"))
+    
+        kont.pack()
         tk.Button(about, text="Schließen", command=about.destroy).pack()
 
         about.mainloop()
