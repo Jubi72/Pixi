@@ -1,7 +1,7 @@
 # Funktionen
 # Pixi - Graphical Portable Pixelmap Editor
 # Created by Julius Bittner 04.03.2015
-# Last change 11.03.2015
+# Last change 17.03.2015
 
 class Pixi:
 
@@ -27,6 +27,7 @@ class Pixi:
         self.kopf[0] = "P" + kind + "\n"
 
     def einlesen (self,datei):
+        # liest Bild ein nach gegebenem Dateinamen
         f = open(datei,"r")    
         self.einliste = f.readlines() #die Rohdaten
         f.close()
@@ -41,13 +42,14 @@ class Pixi:
             textzeile = i.strip()
             textzeile = i.split()
             for punkt in textzeile:
-                zeile.append(int(punkt))
+                self.zeile.append(int(punkt))
         for i in range(self.hoehe):
                 anf  = self.breite*i
                 ende = self.breite+anf
-                self.punktliste.append(zeile[anf:ende])
+                self.punktliste.append(self.zeile[anf:ende])
 
     def spiegelx (self):
+        # spiegelt Bild an x-Achse
         neue_punktliste = []
         for i in self.punktliste:
             neue_punktliste.insert(0,i)
@@ -55,6 +57,7 @@ class Pixi:
             
 
     def spiegely (self):
+        # spiegelt Bild an y-Achse
         neue_punktliste = []
         for i in range(self.hoehe):
             zeile=[]
@@ -64,6 +67,7 @@ class Pixi:
         self.punktliste = neue_punktliste
 
     def invertieren (self):
+        # invertiert Bild
         neue_punktliste=[]
         for zeile in self.punktliste:
             listenzeile=[]
@@ -75,6 +79,7 @@ class Pixi:
         print(self.punktliste)
 
     def schreiben(self,datei):
+        # schreibt Bild in gegebenen Dateinamen
         a=open(datei,"w")
         s=''
         kopf=''
