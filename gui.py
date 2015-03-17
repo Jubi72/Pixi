@@ -61,19 +61,19 @@ class Gui:
     def einlesen(self):
         # liest Bild ein
         self.filename = askopenfilename()
-        bild = pixi.Pixi()
-        bild.einlesen(self.filename)
+        self.bild = pixi.Pixi()
+        self.bild.einlesen(self.filename)
 
         tk.Label(self.root, text=self.filename, bg="red", fg="white").pack()
 
     def speichern(self):
         # Speichert Datei unter gleichem Namen
-        bild.schreiben(self.filename)
+        self.bild.schreiben(self.filename)
 
     def speichern_unter(self):
         # Speichert Datei unter (anderem) Namen
         self.filename = askopenfilename()
-        bild.schreiben(self.filename)
+        self.bild.schreiben(self.filename)
 
     def plaintext(self):
         # zeigt Inhalt der Datei in Plaintext an
@@ -85,15 +85,15 @@ class Gui:
 
     def spiegeln_x(self):
         # Spiegelt Bild an x-Achse
-        bild.spiegelx()
+        self.bild.spiegelx()
 
     def spiegeln_y(self):
         # Spiegelt Bild an y-Achse
-        bild.spiegely()
+        self.bild.spiegely()
     
     def invertieren(self):
         # invertiert Farben des Bilds
-        bild.invertieren()
+        self.bild.invertieren()
 
     def drehen_rechts(self):
         # Dreht Bild um 90 ° nach rechts
