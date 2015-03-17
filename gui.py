@@ -15,7 +15,7 @@ class Gui:
         self.root = tk.Tk()
         self.root.title("Pixi")
         self.root.config(bg="red")
-        self.root.geometry("300x100+100+100")
+        self.root.geometry("400x100+100+100")
         self.filename = "" # Dateiname für Bild
         
         tk.Label(self.root, text="Pixi", fg="white", bg="red", font="Georgia 48").pack()
@@ -63,6 +63,8 @@ class Gui:
         self.filename = askopenfilename()
         bild = pixi.Pixi()
         bild.einlesen(self.filename)
+
+        tk.Label(self.root, text=self.filename, bg="red", fg="white").pack()
 
     def speichern(self):
         # Speichert Datei unter gleichem Namen
