@@ -105,7 +105,23 @@ class Gui:
 
     def hilfe(self):
         # zeigt Hilfetext an
-        hilfetext = "*Hilfetext*"
+        hilfetext = """Hallo, hier bekommst Du alle wichtigen Informationen zur Funktionsweise dieses Programmes.
+Wir hoffen, dass wir Dir helfen können dieses Programm zu verstehen.
+
+Unser Programm dient zur Verarbeitung von Bildern. Zuerst öffnest Du ein Graustufenbild, indem Du in der
+Menüleiste auf "Datei" klickst und auf die Schaltfläche "Öffnen" drückst. Nachdem Du ein Bild ausgesucht hast,
+kannst Du verschiedene Sachen mit diesem Bild anstellen.
+
+Klicke in der Menüleiste auf "Bearbeiten" und Du siehst die Arbeitsschritte, die unser Programm anbietet.
+Du kannst dein Bild an der x- und y-Achse spiegeln lassen, das Bild nach links und rechts drehen und zu guterletzt
+die Farbwerte des Bildes invertieren. Du kannst also die Farbwerte umkehren. Aus weiß wird schwarz und anders herum.
+
+Wenn Du erneut auf "Datei" in der Menüleiste klickst, siehst Du die Felder "Speichern" und "Speichern unter".
+Mit diesen Funktionen lässt sich dein geändertes Bild speichern. Du kannst Dir natürlich auch den Dateiinhalt
+und die Eigenschaften des Bildes anschauen.
+
+Wir hoffen, dass wir Dir helfen konnten und wünschen einen angenehmen gebrauch des PGM-Editor."""
+
         hilfef = tk.Tk()
         hilfef.title("Pixi-Hilfe")
         hilfef.config(bg="red")
@@ -119,7 +135,7 @@ class Gui:
         # zeigt Informationen über das Programm an
         abouttext = """Pixi
 
-Grafischer PPM-Editor
+Grafischer PGM-Editor
 
 Version 0.0.1
 
