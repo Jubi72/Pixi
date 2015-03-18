@@ -76,8 +76,7 @@ class Pixi:
                 listenzeile.append(neuer_wert)
             neue_punktliste.append(listenzeile)
         self.punktliste=neue_punktliste
-        print(self.punktliste)
-
+        
     def schreiben(self,datei):
         # schreibt Bild in gegebenen Dateinamen
         a=open(datei,"w")
