@@ -1,7 +1,7 @@
 # Graphical User Interface
 # Pixi - Graphical Portable Pixelmap Editor
 # Created by Julius Bittner 04.03.2015
-# Last change 13.03.2015
+# Last change 18.03.2015
 
 import pixi
 import tkinter as tk
