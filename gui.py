@@ -117,8 +117,8 @@ Du kannst dein Bild an der x- und y-Achse spiegeln lassen, das Bild nach links u
 die Farbwerte des Bildes invertieren. Du kannst also die Farbwerte umkehren. Aus weiß wird schwarz und anders herum.
 
 Wenn Du erneut auf "Datei" in der Menüleiste klickst, siehst Du die Felder "Speichern" und "Speichern unter".
-Mit diesen Funktionen lässt sich dein geändertes Bild speichern. Du kannst Dir natürlich auch den Dateiinhalt
-und die Eigenschaften des Bildes anschauen.
+Entweder überschreibst Du "Speichern" dein altes Bild oder Du speicherst das geänderte Bild als neue Datei. Du kannst
+Dir natürlich auch den Dateiinhalt und die Eigenschaften des Bildes anschauen.
 
 Wir hoffen, dass wir Dir helfen konnten und wünschen einen angenehmen gebrauch des PGM-Editor."""
 
