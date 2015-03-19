@@ -1,7 +1,7 @@
 # Funktionen
 # Pixi - Graphical Portable Pixelmap Editor
 # Created by Julius Bittner 04.03.2015
-# Last change 17.03.2015
+# Last change 19.03.2015
 
 class Pixi:
 
@@ -76,6 +76,20 @@ class Pixi:
                 listenzeile.append(neuer_wert)
             neue_punktliste.append(listenzeile)
         self.punktliste=neue_punktliste
+        
+    def drehen(self):
+        # dreht Bild um 90° nach rechts (oben ist nun rechts und rechts ist unten usw.; mathematisch negative Richtung)
+        heohe = self.hoehe
+        self.hoehe = self.breite
+        self.breite = hoehe
+        
+        neueliste = list()
+        for zeile in range(len(self.punktliste[0])):
+            neueliste.append([])
+            for elem in range(len(self.punktliste)):
+                neueliste[zeile].append(self.punktliste[len(self.punktliste)-1-elem][zeile])
+                
+        self.punktliste = neueliste.copy()
         
     def schreiben(self,datei):
         # schreibt Bild in gegebenen Dateinamen

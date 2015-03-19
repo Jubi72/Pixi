@@ -6,7 +6,7 @@
 import pixi
 import tkinter as tk
 import os
-from tkinter.filedialog import askopenfilename
+from tkinter.filedialog import askopenfilename, asksaveasfile
 
 class Gui:
 
@@ -72,7 +72,7 @@ class Gui:
 
     def speichern_unter(self):
         # Speichert Datei unter (anderem) Namen
-        self.filename = askopenfilename()
+        self.filename = asksaveasfile(mode='w', defaultextension=".pgm")
         self.bild.schreiben(self.filename)
 
     def plaintext(self):
@@ -97,11 +97,12 @@ class Gui:
 
     def drehen_rechts(self):
         # Dreht Bild um 90 ° nach rechts
-        pass
+        self.bild.drehen()
 
     def drehen_links(self):
         # dreht Bild um 90 ° nach links
-        pass
+        for i in range(3):
+            self.bild.drehen()
 
     def hilfe(self):
         # zeigt Hilfetext an
