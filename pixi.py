@@ -79,7 +79,7 @@ class Pixi:
         
     def drehen(self):
         # dreht Bild um 90° nach rechts (oben ist nun rechts und rechts ist unten usw.; mathematisch negative Richtung)
-        heohe = self.hoehe
+        hoehe = self.hoehe
         self.hoehe = self.breite
         self.breite = hoehe
         
