@@ -38,7 +38,7 @@ class Gui:
         dateimenu.add_command(label="Eigenschaften", command=self.eigenschaften)
         dateimenu.add_command(label="Dateiinhalt anzeigen",command=self.plaintext)
         dateimenu.add_separator()
-        dateimenu.add_command(label="Schließen", command=self.root.destroy)
+        dateimenu.add_command(label="Beenden", command=self.root.destroy)
 
         bearbeitenmenu = tk.Menu(menubar) # Menü zum Bearbeiten des Bilds
         bearbeitenmenu.add_command(label="Spiegeln an x",command=self.spiegeln_x)
@@ -184,15 +184,15 @@ class Gui:
 Wir hoffen, dass wir Dir helfen können, dieses Programm zu verstehen.
 
 Unser Programm dient zur Verarbeitung von Bildern. Zuerst öffnest Du ein Graustufenbild, indem Du in der
-Menüleiste auf "Datei" klickst und auf die Schaltfläche "Öffnen" drückst. Nachdem Du ein Bild ausgesucht hast,
+Menüleiste auf „Datei" klickst und auf die Schaltfläche „Öffnen“ drückst. Nachdem Du ein Bild ausgesucht hast,
 kannst Du dieses Bild auf verschiedene Weisen bearbeiten.
 
-Klicke in der Menüleiste auf "Bearbeiten" und Du siehst die Arbeitsschritte, die unser Programm anbietet.
+Klicke in der Menüleiste auf „Bearbeiten“ und Du siehst die Arbeitsschritte, die unser Programm anbietet.
 Du kannst Dein Bild an der x- und y-Achse spiegeln lassen, das Bild nach links und rechts drehen und
 die Farbwerte des Bildes invertieren: Aus weiß wird schwarz und ebenso umgekehrt.
 
-Wenn Du erneut auf "Datei" in der Menüleiste klickst, siehst Du die Felder "Speichern" und "Speichern unter".
-Entweder überschreibst Du mit "Speichern" dein altes Bild oder Du speicherst das geänderte Bild als neue Datei. Du kannst
+Wenn Du erneut auf „Datei“ in der Menüleiste klickst, siehst Du die Felder „Speichern“ und „Speichern unter“.
+Entweder überschreibst Du mit „Speichern“ dein altes Bild oder Du speicherst das geänderte Bild als neue Datei. Du kannst
 Dir natürlich auch den Dateiinhalt und die Eigenschaften des Bildes anschauen.
 
 Wir hoffen, dass wir Dir helfen konnten und wünschen einen angenehmen Gebrauch des PGM-Editors Pixi."""
@@ -231,12 +231,11 @@ Kontakt:"""
     
         kont.pack()
 
-        tk.Label(about, text="Aktuelle Version:", bg="red", font="Georgia 13", fg="white").pack()
+        tk.Label(about, text="\nAktuelle Version:", bg="red", font="Georgia 13", fg="white").pack()
         link="https://github.com/Jubi72/Pixi.git"
         gitlink = tk.Label(about, text=link, bg="red", font="Georgia 13", fg="yellow")
         gitlink.bind("<Button>", lambda event:os.startfile(link))
-        gitlink.pack()
-        
+        gitlink.pack()        
         tk.Button(about, text="Schließen", command=about.destroy).pack()
 
         about.mainloop()
@@ -260,10 +259,6 @@ Kontakt:"""
         # kopiert Text in Zwischenablage
         cbf = tk.Tk()
         cbf.withdraw()
-        if cbf.selection_get(selection = "CLIPBOARD") == text:
-            cbm = tk.Message(cbf, text="Bereits in Zwischenablage!")
-            cbm.config(bg="red", fg="white")
-            cbm.pack()
         cbf.clipboard_clear()
         cbf.clipboard_append(text)
         cbf.destroy()

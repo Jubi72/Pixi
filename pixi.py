@@ -1,7 +1,7 @@
 # Funktionen
 # Pixi - Graphical Portable Pixelmap Editor
 # Created by Julius Bittner 04.03.2015
-# Last change 19.03.2015
+# Last change 23.03.2015
 
 class Pixi:
 
@@ -14,17 +14,6 @@ class Pixi:
         self.hoehe = 0
         self.farbtiefe = 0
         self.punktliste = []
-
-    def binary (self):
-        # Bild muss eingelesen sein, dann wird Bild in Binary umgewandelt.
-        neueliste = self.punktliste.copy()
-        for reihe in range(len(self.punktliste)):
-            for px in range(len(self.punktliste[reihe])):
-                neueliste[reihe][px] = chr(punktliste[reihe][px])
-        self.punktliste = neueliste.copy()
-		
-        kind = str(int(self.kopf[0][1]) + 3)
-        self.kopf[0] = "P" + kind + "\n"
 
     def einlesen (self,datei):
         # liest Bild ein nach gegebenem Dateinamen
@@ -67,7 +56,7 @@ class Pixi:
         self.punktliste = neue_punktliste
 
     def invertieren (self):
-        # invertiert Bild
+        # invertiert Bild/kehrt Farbwerte um
         neue_punktliste=[]
         for zeile in self.punktliste:
             listenzeile=[]
@@ -82,6 +71,7 @@ class Pixi:
         hoehe = self.hoehe
         self.hoehe = self.breite
         self.breite = hoehe
+        self.kopf[2] = str(self.breite) + " " + str(self.hoehe) + "\n"
         
         neueliste = list()
         for zeile in range(len(self.punktliste[0])):
