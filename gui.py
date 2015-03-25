@@ -1,7 +1,7 @@
 # Graphical User Interface
 # Pixi - Graphical Portable Pixelmap Editor
 # Created by Julius Bittner 04.03.2015
-# Last change 23.03.2015
+# Last change 25.03.2015
 
 import pixi
 import tkinter as tk
@@ -35,6 +35,7 @@ class Gui:
         dateimenu.add_command(label="Speichern", command=self.speichern)
         dateimenu.add_command(label="Speichern unter",command=self.speichern_unter)
         dateimenu.add_separator()
+        dateimenu.add_command(label="Anzeigen", command=self.showpgm)
         dateimenu.add_command(label="Eigenschaften", command=self.eigenschaften)
         dateimenu.add_command(label="Dateiinhalt anzeigen",command=self.plaintext)
         dateimenu.add_separator()
@@ -97,6 +98,18 @@ class Gui:
 
         self.namelabel.config(text=self.filename)
         self.namelabel.pack()
+
+    def showpgm(self):
+        # zeigt Bild an
+        self.f1()
+        bildf = tk.Tk()
+        bildf.title(self.filename)
+        self.bild.binschreiben("testbin.pgm")
+
+        pic = tk.PhotoImage(file="testbin.pgm")
+        tk.Label(bildf, image=pic).pack()
+
+        bildf.mainloop()
 
     def plaintext(self):
         # zeigt Inhalt der Datei in Plaintext an
