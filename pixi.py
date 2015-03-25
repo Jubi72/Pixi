@@ -14,6 +14,7 @@ class Pixi:
         self.hoehe = 0
         self.farbtiefe = 0
         self.punktliste = []
+        self.bintext = []
 
     def einlesen (self,datei):
         # liest Bild ein nach gegebenem Dateinamen
@@ -27,6 +28,7 @@ class Pixi:
         self.farbtiefe   = int(self.einliste[3])
         self.punktliste  = []
         self.zeile       =[]
+        self.binary()
         for i in self.einliste[4:]:
             textzeile = i.strip()
             textzeile = i.split()
@@ -80,6 +82,21 @@ class Pixi:
                 neueliste[zeile].append(self.punktliste[len(self.punktliste)-1-elem][zeile])
                 
         self.punktliste = neueliste.copy()
+
+    def binary(self):
+        # schreibt Bild als Binary
+        self.bintext = str()
+        for i in self.punktliste:
+            for j in i: self.bintext += chr(j)
+
+    def binschreiben(self,datei):
+        # schreibt Bild in gegebenen Dateinamen als Binary
+        self.binary()
+        a=open(datei,"w")
+        kopf=''
+        for i in self.kopf: kopf+= i
+        a.write(kopf+self.bintext)
+        a.close()
         
     def schreiben(self,datei):
         # schreibt Bild in gegebenen Dateinamen
