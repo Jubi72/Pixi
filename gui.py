@@ -7,6 +7,7 @@ import pixi
 import tkinter as tk
 import os
 from tkinter.filedialog import askopenfilename, asksaveasfile
+from tkinter.messagebox import showerror, showinfo
 
 class Gui:
 
@@ -65,29 +66,34 @@ class Gui:
         # liest Bild ein
         self.filename = askopenfilename()
         self.bild = pixi.Pixi()
+        #if self.bild.kopf[0][:2] != "P2":
         self.bild.einlesen(self.filename)
 
-        self.namelabel.config(text=self.filename)
+        self.namelabel.config(text=self.filename.split("/")[-1])
         self.namelabel.pack()
+        showinfo("Pixi", "Datei eingelesen (%s)" % self.filename.split("/")[-1])
 
     def speichern(self):
         # Speichert Datei unter gleichem Namen
-        self.f1()
+        if self.f1(): return
         self.bild.schreiben(self.filename)
+        showinfo("Pixi", "Datei gespeichert (%s)" % self.filename.split("/")[-1])
 
     def speichern_unter(self):
         # Speichert Datei unter (anderem) Namen
-        self.f1()
+        if self.f1(): return
 
         self.sfa = tk.Tk()
         self.sfa.title("Datei speichern unter")
-        tk.Label(self.sfa, text="Dateiname:").grid(row=0)
+        
+        tk.Label(self.sfa, text="Dateiname:").pack()
         
         self.ausgabename = tk.Entry(self.sfa)
         self.ausgabename.insert(0, "ausgabe.pgm")
-        self.ausgabename.grid(row=0)
+        self.ausgabename.pack()
 
-        tk.Button(self.sfa, text="Speichern", command=self.speichern_unter2).grid(columnspan=2)
+        tk.Button(self.sfa, text="Hilfe", command=self.speichern_unter3).pack()
+        tk.Button(self.sfa, text="Speichern", command=self.speichern_unter2).pack()
         self.sfa.mainloop()
 
     def speichern_unter2(self):
@@ -96,24 +102,40 @@ class Gui:
         self.bild.schreiben(self.filename)
         self.sfa.destroy()
 
+        showinfo("Pixi", "Datei gespeichert (%s)" % self.filename.split("/")[-1])
+
         self.namelabel.config(text=self.filename)
         self.namelabel.pack()
 
+    def speichern_unter3(self):
+        # Hilfe für das "Speichern unter"-Fenster
+        sfa3 = tk.Tk()
+        sfa3.title("Pixi")
+        sfa3.config(bg="red")
+
+        text = """In den Eintrag einfach Dateinamen eingeben, dann Enter drücken oder auf Speichern klicken.
+Ordnerebene höher speichern: ../ für jeden Überordner eingeben.
+Ordnerebene tiefer speichern: <Ordner>/ für jeden Unterordner eingeben."""
+
+        tk.Label(sfa3, text=text).pack()
+        tk.Button(sfa3, text="Schließen", command=sfa3.destroy).pack()
+
     def showpgm(self):
         # zeigt Bild an
-        self.f1()
+        if self.f1(): return
         bildf = tk.Tk()
         bildf.title(self.filename)
-        self.bild.binschreiben("testbin.pgm")
+        binname = "bin_" + self.filename.split("/")[-1]
+        self.bild.binschreiben(binname)
 
-        pic = tk.PhotoImage(file="testbin.pgm")
-        tk.Label(bildf, image=pic).pack()
+        img = tk.PhotoImage(binname)
+        tk.Label(bildf, image=img).pack()
 
         bildf.mainloop()
 
     def plaintext(self):
         # zeigt Inhalt der Datei in Plaintext an
-        self.f1()
+        if self.f1(): return
         
         ptext = str()
         for i in self.bild.kopf: ptext += i
@@ -141,7 +163,7 @@ class Gui:
 
     def eigenschaften(self):
         # zeigt Inhalt der Datei gut erkennbar
-        self.f1()
+        if self.f1(): return
         name = self.filename
         typ = str(self.bild.kopf[0][:2])
         hoehe = str(self.bild.hoehe)
@@ -167,27 +189,27 @@ class Gui:
 
     def spiegeln_x(self):
         # Spiegelt Bild an x-Achse
-        self.f1()
+        if self.f1(): return
         self.bild.spiegelx()
 
     def spiegeln_y(self):
         # Spiegelt Bild an y-Achse
-        self.f1()
+        if self.f1(): return
         self.bild.spiegely()
     
     def invertieren(self):
         # invertiert Farben des Bilds
-        self.f1()
+        if self.f1(): return
         self.bild.invertieren()
 
     def drehen_rechts(self):
         # Dreht Bild um 90 ° nach rechts
-        self.f1()
+        if self.f1(): return
         self.bild.drehen()
 
     def drehen_links(self):
         # dreht Bild um 90 ° nach links
-        self.f1()
+        if self.f1(): return
         for i in range(3):
             self.bild.drehen()
 
@@ -256,17 +278,8 @@ Kontakt:"""
     def f1(self):
         # wenn self.bild nicht existiert, wird Fehlermeldung ausgegeben
         if not self.bild:
-            
-            fehlerf = tk.Tk()
-            fehlerf.title("Pixi-Hilfe")
-            fehlerf.config(bg="lightgreen")
-
-            tk.Label(fehlerf, text="Bitte erst ein Bild einlesen!\n(Datei => Öffnen)", bg="lightgreen", font="Georgia 13 bold", fg="red").pack()
-            tk.Button(fehlerf, text="Schließen", command=fehlerf.destroy).pack()
-
-            fehlerf.mainloop()
-
-            return
+            showerror("Fehler", "Bild existiert nicht.\nBitte ein Bild einlesen!")
+            return True
 
     def cb(self, text):
         # kopiert Text in Zwischenablage

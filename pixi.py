@@ -1,7 +1,7 @@
 # Funktionen
 # Pixi - Graphical Portable Pixelmap Editor
 # Created by Julius Bittner 04.03.2015
-# Last change 23.03.2015
+# Last change 25.03.2015
 
 class Pixi:
 
@@ -14,7 +14,7 @@ class Pixi:
         self.hoehe = 0
         self.farbtiefe = 0
         self.punktliste = []
-        self.bintext = []
+        self.bintext = str()
 
     def einlesen (self,datei):
         # liest Bild ein nach gegebenem Dateinamen
@@ -93,8 +93,8 @@ class Pixi:
         # schreibt Bild in gegebenen Dateinamen als Binary
         self.binary()
         a=open(datei,"w")
-        kopf=''
-        for i in self.kopf: kopf+= i
+        kopf='P5\n'
+        for i in self.kopf[1:]: kopf+= i
         a.write(kopf+self.bintext)
         a.close()
         
